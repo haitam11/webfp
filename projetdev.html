@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- Include the CesiumJS JavaScript and CSS files -->
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.106/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.106/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <title>devs</title>
+  <style>
+    body {
+      background-color: #333;
+      color: #fff;
+    }
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    .button-container button {
+      padding: 10px 20px;
+      background-color: #fff;
+      color: #333;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="first-container" class="container">
+    <h1>Welcome</h1>
+    <p>Trying to build the best place on the web.</p>
+  </div>
+  
+  <div id="cesiumContainer"></div>
+
+  <script>
+    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjNzBhOThiZS1jMjY1LTQ0ODEtYTUzOS1mYWE3MzY0M2JhYjciLCJpZCI6MTQ3ODk1LCJpYXQiOjE2ODcxOTQ2MTl9.2y4Lw3PPgffGttkaIs-UHHuzaWW4BW7KfhDZMYkBLGw';
+
+    // Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
+    const viewer = new Cesium.Viewer('cesiumContainer', {
+      terrainProvider: Cesium.createWorldTerrain()
+    });
+    
+    // Add Cesium OSM Buildings, a global 3D buildings layer.
+    const buildingTileset = viewer.scene.primitives.add(Cesium.createOsmBuildings());
+
+    // Fly the camera to San Francisco at the given longitude, latitude, and height.
+    viewer.camera.flyTo({
+      destination: Cesium.Cartesian3.fromDegrees(-122.4175, 37.655, 400),
+      orientation: {
+        heading: Cesium.Math.toRadians(0.0),
+        pitch: Cesium.Math.toRadians(-15.0),
+      }
+    });
+
+    var firstContainer = document.getElementById('first-container');
+    var secondContainer = document.createElement('div');
+    secondContainer.id = 'second-container';
+    secondContainer.textContent = ':)';
+
+    // Insert the second container element below the first container
+    firstContainer.parentNode.insertBefore(secondContainer, firstContainer.nextSibling);
+  </script>
+
+  <p>You can also hit a button for shortcut.</p>
+
+  <div class="button-container">
+    <button onclick="window.location.href = 'https://google.com';">Google</button>
+    <button onclick="window.location.href = 'https://youtube.com';">YouTube</button>
+    <button onclick="window.location.href = 'https://chat.openai.com';">AI Chat</button>
+  </div>
+
+  <!-- Add Firebase-related code here -->
+  <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-analytics.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBgq1xfClwgCxSY3z2e1bAD2RvpV5Z1OHk",
+  authDomain: "fp005-fad3e.firebaseapp.com",
+  projectId: "fp005-fad3e",
+  storageBucket: "fp005-fad3e.appspot.com",
+  messagingSenderId: "846417408010",
+  appId: "1:846417408010:web:52ec6c0f13c1fb761c6ff3"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+};
+
+
+   const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+  </script>
+</body>
+</html>
